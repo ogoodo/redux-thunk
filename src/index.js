@@ -9,6 +9,8 @@ export default function thunkMiddleware({ dispatch, getState }) {
       return action(dispatch, getState);
     }
 
+    // 这里的next其实是store.dispatch(或者包装过的store.dispatch)
+    // redux/applyMiddleware.js源码：  dispatch = compose(...chain)(store.dispatch)
     return next(action);
   };
 }
