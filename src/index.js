@@ -9,7 +9,7 @@ export default function thunkMiddleware({ dispatch, getState }) {
       return action(dispatch, getState);
     }
 
-    // 这里的next其实是store.dispatch(或者包装过的store.dispatch即其它中间件的action=>{}这个函数(看传入的参数都是action就好理解))
+    // 调用其它中间件(即其他中间件的action=>{}这个函数), 如果是最后一个中间件next其实就是store.dispatch(看下面源码就知道)
     // redux/applyMiddleware.js源码：  dispatch = compose(...chain)(store.dispatch)
     return next(action);
   };
